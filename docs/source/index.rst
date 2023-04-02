@@ -1,0 +1,15 @@
+Setting up Sphinx and VSCode on Windows.
+========================================
+
+This document describes how to get Sphinx-Doc running on a windows machine including the required software for editing, version control and building of the document package files.   It also goes into some detail on configuring this software and some basic conventions for RST documents editing.
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+   intro
+   install-rancher
+   install-git
+   install-vscode
+   cloning
+   editing
