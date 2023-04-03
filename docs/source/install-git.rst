@@ -1,9 +1,11 @@
-Install Git
-===========
+Install Git and Python
+======================
 
-Git is the software used to maintain version control for lots of projects.    Usually it is for source control for development products, it works equally well for maintaining configuration changes.   While it can be used for binary as well as text data, Git's power is shown through best when working with text based documents.   Commit changes and version differences can be seen very clearly in these cases.   We need it for VSCode to be able to save changes to the git repos.
+Git is the software used to maintain version control for lots of projects.    Usually it is for source control for development products, it works equally well for maintaining configuration changes.   While it can be used for binary as well as text data, Git's power is shown through best when working with text based documents.   Commit changes and version differences can be seen very clearly in these cases.   We need it for VS Code to be able to save changes to the git repos.
 
-This part of the document describes the installation process for git on windows.
+We'll also install python.   We don't strictly need it since we are using python under docker to build the html and pdf package but it's nice to have python installed because VS Code and some of the extensions require python to run.
+
+This part of the document describes the installation process for these two pieces of software on windows.
 
 Download Git
 ------------
@@ -136,5 +138,29 @@ Install (You will probably have to confirm changes)
 
 .. image:: images/53.png
 
-FinishNext
+Finish
+
+Download Python
+---------------
+
+.. image:: images/67-Install-Python.png
+
+#. Navigate to https://python.org/download
+#. Click on the 'Download Python XXX' link to get the latest version of python for windows.
+
+.. image:: images/68.png
+
+Make sure to select: "Add python.exe to PATH" and click "Customize installation".
+
+.. image:: images/69.png
+
+Make sue all 'Optional Features' are checked and click "Next".
+
+.. image:: images/70.png
+
+Make sure "Associate Files", "Create shortcuts" and "Add Python to environment variables" are all checked and click "Install".
+
+.. image:: images/72.png
+
+When the installation is complete, click Close.
 
