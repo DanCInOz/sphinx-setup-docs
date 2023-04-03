@@ -82,7 +82,7 @@ Search for 'Python' and install it.
 
 .. image:: images/42.png
 
-Search for 'Live Server' and install it.
+Search for 'Live Preview' and install it.
 
 .. image:: images/43.png
 
