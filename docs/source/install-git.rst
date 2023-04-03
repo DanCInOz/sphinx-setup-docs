@@ -107,3 +107,34 @@ Execute the commands:
    git config --global user.email "<Email Address>"
    git config --global user.name "<Full Name>"
 
+Download Github CLI 
+-------------------
+
+.. image:: images/49-GithubCLI.png
+
+Github CLI are some CLI tools to help git authenticate seemlessly to GitHub.
+
+#. Navigate to https://cli.github.com/ 
+#. Click on "Download for Windows" to get the latest windows package.
+
+Continue Installation
+---------------------
+
+Most options are default.
+
+.. image:: images/50.png
+
+Next
+
+.. image:: images/51.png
+
+Next
+
+.. image:: images/52.png
+
+Install (You will probably have to confirm changes)
+
+.. image:: images/53.png
+
+FinishNext
+

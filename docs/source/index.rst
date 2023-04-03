@@ -16,5 +16,5 @@ A good, quick overview of Sphinx and how to set it up natively (using the OS pyt
    install-rancher
    install-git
    install-vscode
-   cloning
+   repositories
    editing
