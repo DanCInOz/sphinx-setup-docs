@@ -13,16 +13,6 @@
             },
             "problemMatcher": []
         },
-//        {
-//            "label": "docker-build-epub",
-//            "type": "shell",
-//            "command": "docker run --entrypoint docker/add-requirements.sh -it --rm -v ${workspaceFolder}/docs:/docs sphinxdoc/sphinx make epub",
-//            "group": {
-//                "kind": "build",
-//                "isDefault": false
-//            },
-//            "problemMatcher": []
-//        },
         {
             "label": "docker-sphinx-quickstart",
             "type": "shell",
