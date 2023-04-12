@@ -17,31 +17,11 @@
             "label": "Build HTML and PDF documentation with docker",
             "type": "shell",
             "dependsOrder": "sequence",
-            "dependsOn": ["Check env exists", "clean", "docker-build-html", "docker-build-pdf"],
+            "dependsOn": ["clean", "docker-build-html", "docker-build-pdf"],
             "group": {
                 "kind": "build",
                 "isDefault": false
             }
-        },
-        {
-            "label": "docker-build-html",
-            "type": "shell",
-            "command": "docker run --entrypoint docker/add-requirements.sh -it --rm -v ${workspaceFolder}/docs:/docs sphinxdoc/sphinx make html",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "docker-sphinx-quickstart",
-            "type": "shell",
-            "command": "docker run -it --rm -v ${workspaceFolder}/docs:/docs sphinxdoc/sphinx sphinx-quickstart",
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            },
-            "problemMatcher": []
         },
         {
             "label": "clean",
@@ -67,14 +47,48 @@
             "problemMatcher": []
         },
         {
-            "label": "docker-build-pdf",
+            "label": "Check docker available",
             "type": "shell",
-            "command": "docker run --entrypoint docker/add-requirements.sh -it --rm -v ${workspaceFolder}/docs:/docs sphinxdoc/sphinx-latexpdf make latexpdf",
+            "command": [ "bin/check-docker.sh" ],
             "group": {
                 "kind": "build",
                 "isDefault": false
             },
             "problemMatcher": []
+        },
+        {
+            "label": "docker-build-html",
+            "type": "shell",
+            "dependsOn": ["Check docker available"],
+            "command": "docker run --entrypoint /docs/local-docker-add-requirements.sh -it --rm -v ${workspaceFolder}/docs:/docs sphinxdoc/sphinx make html",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "docker-build-pdf",
+            "type": "shell",
+            "dependsOn": ["Check docker available"],
+            "command": "docker run --entrypoint /docs/local-docker-add-requirements.sh -it --rm -v ${workspaceFolder}/docs:/docs sphinxdoc/sphinx-latexpdf make latexpdf",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "local-install-requirements",
+            "type": "shell",
+            "command": "source ./.env/bin/activate; pip install -r docs/requirements.txt",
+            "windows": {
+                "command": ".env\\Scripts\\Activate.ps1; pip install -r docs\\requirements.txt"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
         },
         {
             "label": "local-build-html",
@@ -97,23 +111,18 @@
             "problemMatcher": []
         },
         {
-            "label": "local-install-requirements",
-            "type": "shell",
-            "command": "source ./.env/bin/activate; pip install -r docs/requirements.txt",
-            "windows": {
-                "command": ".env\\Scripts\\Activate.ps1; pip install -r docs\\requirements.txt"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": false
-            }
-        },
-        {
             "label": "local-build-singlehtml",
             "type": "shell",
-            "command": "source ./.env/bin/activate; pip install -r docs/docker/requirements.txt ; cd docs && make singlehtml",
+            "dependsOn": ["local-install-requirements"],
+            "command": "source ./.env/bin/activate; make singlehtml",
+            "options": {
+                "cwd": "${workspaceFolder}/docs"
+            },
             "windows": {
-                "command": ".env\\Scripts\\Activate.ps1; pip install -r docs\\docker\\requirements.txt ; .\\docs\\make.bat singlehtml"
+                "command": ".env\\Scripts\\Activate.ps1; .\\make.bat singlehtml",
+                "options": {
+                    "cwd": "${workspaceFolder}/docs"
+                }
             },
             "group": {
                 "kind": "build",

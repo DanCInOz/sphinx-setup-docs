@@ -2,26 +2,11 @@
 set -x
 
 apt-get update
-apt-get -y install git rsync python3-pip
-
-pip3 install -v -r docs/requirements.txt 
-
-chown -R root:root .
+apt-get -y install git rsync
 
 cd docs
 export SOURCE_DATE_EPOCH=$(git log -1 --pretty=%ct)
 echo "Source Date: $SOURCE_DATE_EPOCH"
-##############
-# BUILD DOCS #
-##############
- 
-# Python Sphinx, configured with source/conf.py
-# See https://www.sphinx-doc.org/
-make clean
-make html
-
-#make singlehtml
-#make latexpdf
 
 #######################
 # Update GitHub Pages #
@@ -32,7 +17,8 @@ git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
  
 docroot=`mktemp -d`
 rsync -av "build/html/" "${docroot}/"
- 
+cp build/latex/*.pdf "${docroot}/"
+
 pushd "${docroot}"
 
 git init
@@ -46,7 +32,7 @@ touch .nojekyll
 # Add README
 cat > README.md <<EOF
 # README for Sphinx Docs
-This branch is simply a cache for the website served from https://annegentle.github.io/create-demo/,
+This branch is simply a cache for the website served from https://dancinoz.github.io/sphinx-setup-docs/,
 and is not intended to be viewed on github.com.
 For more information on how this site is built using Sphinx, Read the Docs, and GitHub Actions/Pages, see:
  * https://www.docslikecode.com/articles/github-pages-python-sphinx/

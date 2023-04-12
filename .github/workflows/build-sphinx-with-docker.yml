@@ -1,0 +1,41 @@
+name: build-sphinx-with-docker
+
+env:
+  GITHUB_ACTOR: DanCInOz
+  GITHUB_REPOSITORY: DanCInOz/sphinx-setup-docs
+  GITHUB_TOKEN: ${{ secrets.SPHINX_BUILD_SECRET }}
+
+on: 
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build_sphinx_job:
+    runs-on: ubuntu-latest
+    name: Build the docs packages on docker
+    steps:
+    
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          tags: sphinx-builder:latest
+      - name: Make doc packages
+        uses: addnab/docker-run-action@v3
+        with:
+          image: sphinx-builder:latest
+          options: -v ${{ github.workspace }}/docs:/docs
+          run: |
+            make clean
+            make html
+            make latexpdf
+      - name: Push the results to gh-pages branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.SPHINX_BUILD_SECRET }}
+        run: "bin/buildpages-docker.sh"
+        shell: bash
