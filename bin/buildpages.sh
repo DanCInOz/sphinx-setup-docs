@@ -6,10 +6,11 @@ apt-get -y install git rsync python3-sphinx python3-pip
 
 pip3 install -v -r docs/requirements.txt 
 
-git config --global --add safe.directory .
+git config --global --add safe.directory ${pwd}
 
 cd docs
-pwd ls -lah
+pwd
+ls -lah
 export SOURCE_DATE_EPOCH=$(git log -1 --pretty=%ct)
  
 ##############
@@ -20,7 +21,10 @@ export SOURCE_DATE_EPOCH=$(git log -1 --pretty=%ct)
 # See https://www.sphinx-doc.org/
 make clean
 make html
-make singlehtml
+
+cat /tmp/sphinx-err-*
+
+#make singlehtml
 #make latexpdf
 
 #######################
