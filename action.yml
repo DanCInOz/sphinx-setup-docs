@@ -10,5 +10,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - make
     - ${{ inputs.make-target }}
