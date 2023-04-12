@@ -33,9 +33,12 @@ jobs:
           push: false
           tags: sphinx-builder:latest
       - name: Make doc packages
+        uses: addnab/docker-run-action@v3
         with:
           image: sphinx-builder:latest
           options: -v ${{ github.workspace }}/docs:/docs
+          run: |
+            make html
 #      - name: Make Sphinx Pages
 #        uses: ./
 #        id: make-html
