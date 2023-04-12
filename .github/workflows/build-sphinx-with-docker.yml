@@ -7,13 +7,13 @@ env:
 
 on: 
   push:
-    branches: [ feature-dockerimages ]
+    branches: [ main ]
 
 jobs:
 
   build_sphinx_job:
     runs-on: ubuntu-latest
-    name: Build the docs on docker
+    name: Build the docs packages on docker
     steps:
     
       - name: Checkout
