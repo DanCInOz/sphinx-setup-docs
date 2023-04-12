@@ -18,8 +18,8 @@ git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 docroot=`mktemp -d`
 rsync -av "build/html/" "${docroot}/"
 ls -las build/
-ls -las build/latex/
-rsync -av "build/latex/*.pdf" "${docroot}/"
+ls -las build/latex/*.pdf
+cp build/latex/*.pdf "${docroot}/"
 
 pushd "${docroot}"
 
