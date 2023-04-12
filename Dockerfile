@@ -5,6 +5,7 @@ RUN pwd
 WORKDIR /docs
 RUN pwd
 RUN ls -las .
+RUN ls -las docs/*
 ADD docs/* /docs/
 ADD requirements.txt /docs
 RUN ls -las .
