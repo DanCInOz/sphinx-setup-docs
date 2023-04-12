@@ -6,13 +6,14 @@ apt-get -y install git rsync python3-sphinx python3-pip
 
 pip3 install -v -r docs/requirements.txt 
 
-git config --global --add safe.directory ${pwd}
+ls -lah
+chown -R root:root .
 
 cd docs
 pwd
 ls -lah
 export SOURCE_DATE_EPOCH=$(git log -1 --pretty=%ct)
- 
+echo "Source Date: $SOURCE_DATE_EPOCH"
 ##############
 # BUILD DOCS #
 ##############
