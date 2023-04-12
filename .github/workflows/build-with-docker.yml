@@ -18,6 +18,12 @@ jobs:
     
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Get some info
+        run: |
+          pwd
+          ls -las
+          ls -las docs/
+        shell: bash
       - name: Make Sphinx Pages
         uses: ./
         id: make-html
