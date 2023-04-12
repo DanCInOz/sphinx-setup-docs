@@ -1,5 +1,5 @@
 #!/bin/sh
 
-pip3 install -v -r docker/requirements.txt
+pip3 install -v -r requirements.txt
 
 exec "$@"
