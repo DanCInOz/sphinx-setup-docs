@@ -1,4 +1,9 @@
 {
     "esbonio.sphinx.confDir": "",
-    "editor.wordWrap": "on"
+    "editor.wordWrap": "on",
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "cSpell.words": [
+        "desiredenv",
+        "virtenv"
+    ]
 }

@@ -1,8 +1,9 @@
 Install Rancher
 ===============
 
-As mentioned earlier, Rancher is the software the controls the docker engine on your desktop.   We will run the sphinx images inside docker.
+As mentioned earlier, Rancher is the software the controls the docker engine on your desktop.   We will run the sphinx pdf build scripts inside docker.
 
+At this point you can decide not to instal Rancher-Desktop and simplify the process a little.   If you do that the only downside is that you will not be able to build the PDF images locally on your machine.   If that is the case, go ahead and skip this entire section.
 Download Rancher
 ----------------
 
