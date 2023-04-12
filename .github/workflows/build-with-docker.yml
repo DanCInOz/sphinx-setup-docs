@@ -18,13 +18,13 @@ jobs:
     
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Get some info
-        run: |
-          set -x
-          pwd
-          ls -las
-          ls -las docs/
-        shell: bash
+#      - name: Get some info
+#        run: |
+#          set -x
+#          pwd
+#          ls -las
+#          ls -las docs/
+#        shell: bash
       - name: Build
         uses: docker/build-push-action@v4
         with:
@@ -38,7 +38,9 @@ jobs:
           image: sphinx-builder:latest
           options: -v ${{ github.workspace }}/docs:/docs
           run: |
+            make clean
             make html
+            make latexpdf
       - name: Push the results to gh-pages branch
         env:
           GITHUB_TOKEN: ${{ secrets.SPHINX_BUILD_SECRET }}

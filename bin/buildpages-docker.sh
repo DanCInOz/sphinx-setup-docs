@@ -19,7 +19,8 @@ git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
  
 docroot=`mktemp -d`
 rsync -av "build/html/" "${docroot}/"
- 
+rsync -av "build/latex/*.pdf "${docroot}/"
+
 pushd "${docroot}"
 
 git init

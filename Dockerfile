@@ -1,5 +1,5 @@
 # in your Dockerfile
-FROM sphinxdoc/sphinx
+FROM sphinxdoc/sphinx-latexpdf
 
 WORKDIR /docs
 ADD requirements.txt /docs
