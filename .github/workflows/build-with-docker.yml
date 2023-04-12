@@ -25,11 +25,18 @@ jobs:
           ls -las
           ls -las docs/
         shell: bash
-      - name: Make Sphinx Pages
-        uses: ./
-        id: make-html
+      - name: Build
+        uses: docker/build-push-action@v4
         with:
-          make-target: 'html'
+          context: .
+          file: ./Dockerfile
+          push: false
+          tags: tmpbuild
+#      - name: Make Sphinx Pages
+#        uses: ./
+#        id: make-html
+#        with:
+#          make-target: 'html'
       - name: Push the results to gh-pages branch
         env:
           GITHUB_TOKEN: ${{ secrets.SPHINX_BUILD_SECRET }}
