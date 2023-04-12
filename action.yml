@@ -1,0 +1,14 @@
+# action.yml
+name: 'Build'
+description: 'Build our sphinx documentation package'
+inputs:
+  make-target:  # what to make
+    description: 'Sphinx Make Target'
+    required: true
+    default: 'html'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - make
+    - ${{ inputs.make-target }}
