@@ -31,7 +31,11 @@ jobs:
           context: .
           file: ./Dockerfile
           push: false
-          tags: tmpbuild
+          tags: sphinx-builder:latest
+      - name: Make doc packages
+          with:
+            image: sphinx-builder:latest
+            options: -v ${{ github.workspace }}/docs:/docs
 #      - name: Make Sphinx Pages
 #        uses: ./
 #        id: make-html
