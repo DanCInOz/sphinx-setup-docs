@@ -39,13 +39,8 @@ jobs:
           options: -v ${{ github.workspace }}/docs:/docs
           run: |
             make html
-#      - name: Make Sphinx Pages
-#        uses: ./
-#        id: make-html
-#        with:
-#          make-target: 'html'
       - name: Push the results to gh-pages branch
         env:
           GITHUB_TOKEN: ${{ secrets.SPHINX_BUILD_SECRET }}
-        run: "bin/buildpage-docker.sh"
+        run: "bin/buildpages-docker.sh"
         shell: bash
