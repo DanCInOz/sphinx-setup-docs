@@ -159,12 +159,12 @@ Just above the "Indices and tables" heading, paste the following text...
 
     .. note::
 
-    This is note text. If note text runs over a line, make sure the lines wrap
-    and are indented to the same level as the note tag. If formatting is
-    incorrect, part of the note might not render in the HTML output.
+        This is note text. If note text runs over a line, make sure the lines wrap
+        and are indented to the same level as the note tag. If formatting is
+        incorrect, part of the note might not render in the HTML output.
 
-    Notes can have more than one paragraph. Successive paragraphs must indent
-    to the same level as the rest of the note.
+        Notes can have more than one paragraph. Successive paragraphs must indent
+        to the same level as the rest of the note.
 
     .. warning::
 
@@ -179,7 +179,7 @@ Just above the "Indices and tables" heading, paste the following text...
 
     For lists, just place an asterisk at
     the start of a paragraph and indent properly.  The same goes for numbered
-    lists; they can also be autonumbered using a ``#`` sign::
+    lists; they can also be auto numbered using a ``#`` sign.
 
     * This is a bulleted list.
     * It has two items, the second
@@ -192,7 +192,7 @@ Just above the "Indices and tables" heading, paste the following text...
     #. It has two items too.
 
     Nested lists are possible, but be aware that they must be separated from the
-    parent list items by blank lines::
+    parent list items by blank lines.
 
     * this is
     * a list
