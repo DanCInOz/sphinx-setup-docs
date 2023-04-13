@@ -1,7 +1,7 @@
 Install Visual Studio Code
 ==========================
 
-Visual Studio Code is a free editor of text files aimed at development.    It's enhanced by plugins to extend it's already full base features.
+Visual Studio Code is a free editor of text files aimed at development.    It's enhanced by plugins to extend it's already full base features.  Now that you have git and python installed, you can install VSCode.   It's not strictly necessary to do it in this order, but it's handy to configure vscode after python and git are installed, since vscode will see this software and suggest useful extensions.
 
 Download Visual Studio Code
 ---------------------------

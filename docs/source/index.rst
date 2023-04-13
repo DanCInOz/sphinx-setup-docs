@@ -11,9 +11,9 @@ A good, quick overview of Sphinx and how to set it up natively (using the Native
    :maxdepth: 3
    :caption: Contents:
 
-   intro
-   install-git
-   install-vscode
-   install-rancher
-   repositories
-   editing
+   00-intro
+   01-method-local
+   02-install-vscode
+   03-editing
+   04-method-rancher
+   05-repositories

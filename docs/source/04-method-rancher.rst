@@ -1,11 +1,18 @@
-Install Rancher
-===============
+Method 2 - Rancher
+==================
 
-As mentioned earlier, Rancher is the software the controls the docker engine on your desktop.   We will run the sphinx pdf build scripts inside docker.
+As mentioned earlier, Rancher is the software the controls the docker engine on your desktop.   With this method we will run the sphinx pdf build scripts inside docker.
 
-At this point you can decide not to instal Rancher-Desktop and simplify the process a little.   If you do that the only downside is that you will not be able to build the PDF images locally on your machine.   If that is the case, go ahead and skip this entire section.
-Download Rancher
-----------------
+.. warning::
+
+   This method is completely optional.   If you plan on putting your sources into a github repository then you can have github build the documentation for you, each time you push the sources to github.
+
+   What this method does allow for is if you want to build completely separate from github or if you want to build your pdf relatively quickly (it takes a couple of minutes via github workflow)
+
+If you do decide not to install rancher, then the only real downside is that you will not be able to build the PDF images locally on your machine.   If that is the case, go ahead and skip this entire section.
+
+Download and install Rancher
+----------------------------
 
 .. image:: images/01-DownloadRancher.png
 

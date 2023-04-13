@@ -1,5 +1,8 @@
+Method 1 - Build locally
+========================
+
 Install Git and Python
-======================
+----------------------
 
 Git is the software used to maintain version control for lots of projects.    Usually it is for source control for development products, it works equally well for maintaining configuration changes.   While it can be used for binary as well as text data, Git's power is shown through best when working with text based documents.   Commit changes and version differences can be seen very clearly in these cases.   We need it for VS Code to be able to save changes to the git repos.
 
