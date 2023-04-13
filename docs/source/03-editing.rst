@@ -185,11 +185,11 @@ Just above the "Indices and tables" heading, paste the following text...
     * It has two items, the second
         item uses two lines.
 
-    1. This is a numbered list.
-    2. It has two items too.
-
     #. This is a numbered list.
     #. It has two items too.
+
+    1. This is a different numbered list.
+    2. It has two items too.
 
     Nested lists are possible, but be aware that they must be separated from the
     parent list items by blank lines.
