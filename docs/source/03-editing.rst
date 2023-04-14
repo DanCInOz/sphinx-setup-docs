@@ -13,6 +13,8 @@ So lets build a basic document, single page with a standard table of contents.  
 Create a new working folder
 ---------------------------
 
+Working folders are a little like projects.   You can think of the folder as a new project directory for your documentation.
+
 Open up VS Code.   You should be at the welcome screen.   You can click on the "Open Folder" link, or go via the menu to the :menuselection:`File --> Open Folder` selection.  
 
 .. image:: images/79-VSCode-NewFolder.png
@@ -32,6 +34,9 @@ Click on the newly created folder and click "Select Folder".
 You will be asked to confirm if you trust the authors of this folder.   Since we are going to be the authors, you can click Yes.
 
 .. image:: images/84.png
+
+Set up git for this project
+---------------------------
 
 Next we need to intialise the repository for git.   Hit `Ctrl + Shift + G` or click on the "Source Control" button on the left hand side.
 
@@ -92,9 +97,12 @@ Repeat the process for :file:`.gitignore` which will tell git which files to nev
 
 .. image:: images/91.png
 
-Notice how there is now a small '2' on the source control icon?   This tells us that there are two files changed since the last 'commit'.  The fact that the filenames are green also tell us they are new files (yellow would indicate a changed file).
+Notice how there is now a small '2' on the source control icon?   This tells us that there are two files changed since the last 'commit'.  The fact that the filenames are green also tell us they are new files (yellow would indicate a changed file).   We will commit the changes later.
 
 .. image:: images/92.png
+
+Set up python for this project
+------------------------------
 
 Next we will create our python environment.    Open a new 'terminal' window by selecting :menuselection:`Terminal->New Terminal`.  You should now see a powershell window in the bottom right of VSCode.
 
@@ -110,7 +118,10 @@ Hopefully you will see the popup asking if you want to make it the default for t
 
 .. image:: images/95.png
 
-In a new terminal window, type the following to install Sphinx.   To keep things neat and tidy, lets put our document stuff in a subdir called docs.   In the terminal window, execute the following commands:
+Install Sphinx
+--------------
+
+In a new terminal window, type the following to install Sphinx into our python environment.   To keep things neat and tidy, lets put our document stuff in a subdir called docs.   In the terminal window, execute the following commands:
 
 .. code-block::
 
@@ -140,7 +151,7 @@ Project language                        en                      Corporate defaul
 When the quickstart process is finished, it will create some files in the current directory (docs).
 Namely:
 
-.. image:: images/96.png
+.. image:: images/97.png
 
 =================================== ===========================================================================
 Directory                           Function
@@ -149,6 +160,9 @@ docs/build                          The directory where our packages will be bui
 docs/source                         The directory containing the RST source files and python config file.
 docs/make.bat and /docs/Makefile    These are scripts used for building the packages.
 =================================== ===========================================================================
+
+Edit our first document
+----------------------- 
 
 In the explorer window, navigate to docs/source/index.rst and click on it to open it in an editor tab.
 As a quick example, lets add some RST text and generate the html pages.
@@ -202,6 +216,147 @@ Just above the "Indices and tables" heading, paste the following text...
 
     * and here the parent list continues
 
+Save the file and lets build the HTML package.
+
+In the terminal window, type the following commands.   (Make sure you are still in the docs directory)
+
+.. code-block::
+
+    .\make clean
+    .\make html
+
+The first command makes sure the old html files are removed, and then the second command builds it again.  If all went well, you should see under the docs/build directory, a new directory called 'html' (and another called doctrees - you can ignore that)
+
+.. image:: images/98.png
+
+Navigate into the html dir, and right click on index.html and select "Show Preview".   
+
+.. image:: images/99.png
+
+A new pane will open with a browser showing your page.    I'm not a big fan of that pane, but you can just copy the URL and open it in a normal browser.
+
+The page looks nice, but there's a few things we should change.   Firstly, remove the "Indices and tables" section at the bottom.   It does not really do much for us.     Secondly, lets install a nicer html theme (the 'read the docs' theme).
+
+Open the conf.py file in the docs directory.   This file is used to define how sphinx itself is configured.
+
+Change the html_theme setting from alabaster to "sphinx_rtd_theme".   And above that line, add another line to import the python module for the RTD theme.   It should look like this:
+
+.. code-block::
+
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+
+But before we can build that, we have to install the sphinx_rtd_theme module into our python environment.    So in a terminal window, type the following.
+
+.. code-block::
+
+    pip install sphinx_rtd_theme
+
+Now, run the `make clean ; make html` commands again to rebuild the docs.   If you go back to your browser and refresh you should see a big change.
+
+.. image:: images/100.png
+
+WOW, that looks a whole lot nicer!
+
+Tasks
+-----
+
+Next, to make things a little easier.   Lets make some tasks for building our html pages.
+
+Hit Ctrl+Shift+P to bring up the VSCode command dialog.   It's a way for searching for a command when you don't know how to find it in the menu (or it does not have a key binding).   Type 'tasks', choose "Tasks: Configure Task" and select "Create tasks.json from template".  Choose 'Others' as the task template.
+
+It will open an editor tab with a blank tasks.json file in it.   It looks like this:
+
+.. code-block:: json
+
+    {
+        // See https://go.microsoft.com/fwlink/?LinkId=733558
+        // for the documentation about the tasks.json format
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "echo",
+                "type": "shell",
+                "command": "echo Hello"
+            }
+        ]
+    }
+
+
+Change that for the following JSON code.    Basically, we're deleting the 'echo' task and adding two more, setting one of them as the default build task.
+
+.. code-block:: json
+
+    {
+        // See https://go.microsoft.com/fwlink/?LinkId=733558
+        // for the documentation about the tasks.json format
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "local-build-html",
+                "type": "shell",
+                "dependsOn": ["clean"],
+                "command": "source ../.env/bin/activate; make html",
+                "options": {
+                    "cwd": "${workspaceFolder}/docs"
+                },
+                "windows": {
+                    "command": "..\\.env\\Scripts\\Activate.ps1; .\\make.bat html",
+                    "options": {
+                        "cwd": "${workspaceFolder}/docs"
+                    },
+                },
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                },
+                "problemMatcher": []
+            },
+            {
+                "label": "clean",
+                "type": "shell",
+                "command": "source ../.env/bin/activate; make clean",
+                "options": {
+                    "cwd": "${workspaceFolder}/docs"
+                },
+                "windows": {
+                    "command": "..\\.env\\Scripts\\Activate.ps1; .\\make.bat clean",
+                    "options": {
+                        "cwd": "${workspaceFolder}/docs"
+                    },
+                },
+                "group": {
+                    "kind": "build",
+                    "isDefault": false
+                },
+                "problemMatcher": []
+            }
+        ]
+    }
+
+
+In the code above you can see two tasks defined.   'local-build-html' and 'clean'.    These just do what we were doing manually with the ``make clean`` and ``make html`` commands.   The only difference is we have to tell VS Code where to work from  (cwd), and we have to set the python environment first (Activate.ps1).   There are also two commands defined in each task, one for windows (``..\\.env\\Scripts\\Activate.ps1; .\\make.bat <something>``). This overrides the other command, which is the unix corresponding unix command (``source ../.env/bin/activate; make <something>``).   
+
+The 'group' section of the JSON data just tells VS Code that these are build tasks, and one of them is the default build task.  Finally, in the 'local-build-html' task, we have a 'dependsOn' setting.    This makes sure that the 'clean' task gets executed always before the 'local-build-html' task.
+
+Once you have these saved to tasks.json you should be able to hit Ctrl+Shift+B and the html files will be re-build automatically.
+
+Saving Changes - the git way
+----------------------------
+
+So saving the files happens normally of course but when we have git installed we can also save progressive versions.    Git is a little complicated but I'll go over the basics.   Your code is stored, not just in the working directory, but also in the git database under the .git directory.  For each change to one or more files you can save extra info.    Firstly, a small commit message (required) to mention what your changes are, but you can also add tags to a git commit so that it's clear what stage the full package is...    For instance, you might commit the current changes with "My first commit." and then add a tag that gives the whole package a version number.   Tags are optional so we'll ignore them for now.
+
+Click on the 'Source Control' button and we will make our first commit.
+
+.. image:: images/101.png
+
+In this image you can see there is a text box for the commit message.  And below that the list of changes.    Now, we need to tell git which changes we wish to commit to the git repo.   Clicking on the + on the changes row will let us add them all.
+
+.. image:: images/102.png
+
+Now we can see all of our changes are staged under the 'Staged Changes' branch and nothing is left in the 'Changes' branch.    Enter a commit message and click 'Commit'.   You should see all the changes disappear and the change counter on the left 'Source Control' button disappear as well.
+
+When you navigate back to the Explorer, you will see in your source tree all of the green files are now white.
 
 OLDER doc
 ---------
