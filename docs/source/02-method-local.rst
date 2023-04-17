@@ -111,13 +111,15 @@ Execute the commands:
 
    git config --global user.email "<Email Address>"
    git config --global user.name "<Full Name>"
+   git config --global init.defaultBranch main
+
 
 Download Github CLI 
 -------------------
 
 .. image:: images/49-GithubCLI.png
 
-Github CLI are some CLI tools to help git authenticate seemlessly to GitHub.
+The Github CLI package contains some CLI tools to help git authenticate easily to GitHub.
 
 #. Navigate to https://cli.github.com/ 
 #. Click on "Download for Windows" to get the latest windows package.

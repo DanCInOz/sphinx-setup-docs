@@ -9,7 +9,7 @@ As mentioned earlier, Rancher is the software the controls the docker engine on 
 
    What this method does allow for is if you want to build completely separate from github or if you want to build your pdf relatively quickly (it takes a couple of minutes via github workflow)
 
-If you do decide not to install rancher, then the only real downside is that you will not be able to build the PDF images locally on your machine.   If that is the case, go ahead and skip this entire section.
+If you do decide not to install rancher, then the only real downside is that you will not be able to build the PDF images locally on your machine.   If that's OK with you, go ahead and skip this entire section.
 
 Download and install Rancher
 ----------------------------

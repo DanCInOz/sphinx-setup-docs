@@ -4,9 +4,8 @@ Editing Sphinx documents
 By this stage you should have the following:
 
 * A working git installation.
-* Rancher and Docker engine so you can run the Sphinx python code.
 * Visual Studio installed with a few useful plugins.
-
+* Python3 installed.
 
 So lets build a basic document, single page with a standard table of contents.   And then we'll build it into html with the locally installed python and sphinx.
 
@@ -218,6 +217,9 @@ Just above the "Indices and tables" heading, paste the following text...
 
 Save the file and lets build the HTML package.
 
+Build html docs
+---------------
+
 In the terminal window, type the following commands.   (Make sure you are still in the docs directory)
 
 .. code-block::
@@ -227,13 +229,22 @@ In the terminal window, type the following commands.   (Make sure you are still 
 
 The first command makes sure the old html files are removed, and then the second command builds it again.  If all went well, you should see under the docs/build directory, a new directory called 'html' (and another called doctrees - you can ignore that)
 
-.. image:: images/98.png
+Live Server
+-----------
 
-Navigate into the html dir, and right click on index.html and select "Show Preview".   
+If you installed the "Live Preview" plugin, you can start a basic local html server to view your changes whenever you rebuild the documentation in html.   This is really handy for seeing your work progress.
+
+.. image:: images/75.png
+
+In the search bar (Ctrl-Shift-P) search for "> Live Preview" and click on "Live Preview: Start Server".   You might get a windows firewall warning to allow the traffic.
+
+.. image:: images/76.png
+    :scale: 30%
+
+It should open a tab to http://127.0.0.1:3000/ but I find it easier opening that in a new web browser.
+It will refresh the page with every change to the code.  If you navigate to http://127.0.0.1/docs/build/html/ you should see your documentation.
 
 .. image:: images/99.png
-
-A new pane will open with a browser showing your page.    I'm not a big fan of that pane, but you can just copy the URL and open it in a normal browser.
 
 The page looks nice, but there's a few things we should change.   Firstly, remove the "Indices and tables" section at the bottom.   It does not really do much for us.     Secondly, lets install a nicer html theme (the 'read the docs' theme).
 
@@ -358,6 +369,26 @@ Now we can see all of our changes are staged under the 'Staged Changes' branch a
 
 When you navigate back to the Explorer, you will see in your source tree all of the green files are now white.
 
+Saving to github
+----------------
+
+So we now have our local repository, but the files are all still on our local machine.    One of the great things about git is that it's designed to work with remote (shared even) repositories.    So let's save our git repo to github.   If you don't already have a github account, go and create one.
+
+.. image:: images/103.png
+
+Go back to the 'Source Control' section and you should see that the commit button now says "Publish Branch".    Click on that and you will be asked to 'allow' the inbuilt github extension to authnticate to github.   Click 'Allow'.   It will open a web browser when you log in and complete the authentication, an oauth token will be created and stored in the windows credentials store.
+
+.. image:: images/103.png
+
+You should now see two options...   One for creating a public and one for a private repo.   Choose one.  VS Code will now attempt to create the remote repo on github.com.  If it already exisst it will inform you and will not push the code.  Otherwise VS code will link your local repo to the newly created remote and publish (push) the code to the new repo.   
+
+.. note::
+    You might be asked to authenticate to github again, this time it's to trust the 'git credentials manager' or the 'git ecosystem'.   This is to allow the git command line tools to also interact with your github account.
+
+What to do if the repo exists, and it is the one you want to use?   Well normally we would have cloned that repo on our local machine instead of creating a repo locally and pushing it to github, so that situation should not really happen.
+
+We're 
+
 OLDER doc
 ---------
 
@@ -386,7 +417,7 @@ This image shows the basic overview of the project folder.   If you expand the a
     The generated files (html, pdf, epub etc) are all built into this directory.
 
 /docs/docker
-    To make this run smoothly, I've added 2 files to be included when we run the docker sphinx container.   ``add-requirements.sh`` simply downloads and adds the python modules in ``requirements.txt`` before building the doc files.   In this case we are only adding in the 'read-the-docs' html theme.
+    You can ignore this.   In an earlier version of this document I put some rancher/docker config files here, but they were moved to a different location.
 
 /docs/source
     The source files for our documentation are here.   Mainly rst files with the text and images we wish to include.  But also a configuration file that tells sphinx how to build the documentation (i.e. what themes to use and what doc generatio settings to use.)
@@ -397,23 +428,6 @@ This image shows the basic overview of the project folder.   If you expand the a
 /.git*
     These are git config files.   In our case we tell git what to ignore (i.e. what not to save in the git repo), and also how to handle the CRLF settings for specific files.   We ignore the /build directory and any .env directories as well in case someone decides to create a python environment in the project.
 
-Live Server
------------
-
-If you installed the "Live Preview" plugin, you can start a basic local html server to view your changes whenever you rebuild the documentation in html.   This is really handy for seeing your work progress.
-
-.. image:: images/75.png
-
-In the search bar (Ctrl-Shift-P) search for "> Live Preview" and click on "Live Preview: Start Server".   You might get a windows firewall warning to allow the traffic.
-
-.. image:: images/76.png
-    :scale: 30%
-
-It should open a tab to http://127.0.0.1:3000/ but I find it easier opening that in a new web browser.
-It will refresh the page with every change to the code.  If you navigate to http://127.0.0.1/docs/build/ you will see an empty webroot.
-
-.. image:: images/77.png
-    :scale: 30%
 
 Build HTML and PDF documentation
 --------------------------------
