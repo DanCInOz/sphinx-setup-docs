@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Method 2 - Rancher &mdash; Sphinx Setup 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Method 3 - Github workflows" href="05-method-github-actions.html" />
+    <link rel="prev" title="Editing Sphinx documents" href="03-editing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Sphinx Setup
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-install-vscode.html">Install Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-method-local.html">Method 1 - Build locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-editing.html">Editing Sphinx documents</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Method 2 - Rancher</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#download-and-install-rancher">Download and install Rancher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continue-install">Continue install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#don-t-restart-yet">Don’t restart - yet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-the-engine">Configure the engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#close-and-restart">Close and restart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging-back-in">Logging back in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wait-for-wsl2-deployment">Wait for WSL2 deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pull-required-docker-images">Pull required docker images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-progress">Install progress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verify-images-in-rancher-desktop">Verify images in Rancher desktop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05-method-github-actions.html">Method 3 - Github workflows</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sphinx Setup</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Method 2 - Rancher</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/04-method-rancher.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="method-2-rancher">
+<h1>Method 2 - Rancher<a class="headerlink" href="#method-2-rancher" title="Permalink to this heading"></a></h1>
+<p>As mentioned earlier, Rancher is the software the controls the docker engine on your desktop.   With this method we will run the sphinx pdf build scripts inside docker.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method is completely optional.   If you plan on putting your sources into a github repository then you can have github build the documentation for you, each time you push the sources to github.</p>
+<p>What this method does allow for is if you want to build completely separate from github or if you want to build your pdf relatively quickly (it takes a couple of minutes via github workflow)</p>
+</div>
+<p>If you do decide not to install rancher, then the only real downside is that you will not be able to build the PDF images locally on your machine.   If that’s OK with you, go ahead and skip this entire section.</p>
+<section id="download-and-install-rancher">
+<h2>Download and install Rancher<a class="headerlink" href="#download-and-install-rancher" title="Permalink to this heading"></a></h2>
+<img alt="_images/01-DownloadRancher.png" src="_images/01-DownloadRancher.png" />
+<ol class="arabic simple">
+<li><p>In your favorite web browser navigate to this <a class="reference external" href="https://github.com/rancher-sandbox/rancher-desktop/releases">page</a>: <code class="docutils literal notranslate"><span class="pre">https://github.com/rancher-sandbox/rancher-desktop/releases</span></code></p></li>
+<li><p>Click on the “Windows” link to download the latest windows version.</p></li>
+</ol>
+</section>
+<section id="continue-install">
+<h2>Continue install<a class="headerlink" href="#continue-install" title="Permalink to this heading"></a></h2>
+<img alt="_images/02.png" src="_images/02.png" />
+<p>Click Next.</p>
+<img alt="_images/03.png" src="_images/03.png" />
+<p>Click Install.</p>
+<img alt="_images/04.png" src="_images/04.png" />
+<p><em>Wait</em></p>
+<img alt="_images/05.png" src="_images/05.png" />
+<p>Click Finish.</p>
+</section>
+<section id="don-t-restart-yet">
+<h2>Don’t restart - yet<a class="headerlink" href="#don-t-restart-yet" title="Permalink to this heading"></a></h2>
+<img alt="_images/06.png" src="_images/06.png" />
+<p>Click No.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Clicking no here allows you to choose the initial setup for rancher (namely chosing the docker engine and not enabling Kubernetes).  It does produce an <strong>error</strong> however it is fixed after a reboot.</p>
+</div>
+</section>
+<section id="configure-the-engine">
+<h2>Configure the engine<a class="headerlink" href="#configure-the-engine" title="Permalink to this heading"></a></h2>
+<img alt="_images/07.png" src="_images/07.png" />
+<ol class="arabic simple">
+<li><p>Disable (uncheck) Kibernetes.</p></li>
+<li><p>Select “dockerd” as the container software.</p></li>
+</ol>
+<p>Click Accept.</p>
+</section>
+<section id="close-and-restart">
+<h2>Close and restart<a class="headerlink" href="#close-and-restart" title="Permalink to this heading"></a></h2>
+<img alt="_images/08.png" src="_images/08.png" />
+<p>Click Close and restart.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After some time rancher will throw an error - this is because WLS2 and the docker image are not yet installed.   Reboot your PC.</p>
+</div>
+</section>
+<section id="logging-back-in">
+<h2>Logging back in<a class="headerlink" href="#logging-back-in" title="Permalink to this heading"></a></h2>
+<img alt="_images/09.png" src="_images/09.png" />
+<p>After restart, upon log in WSL2 is installed.</p>
+</section>
+<section id="wait-for-wsl2-deployment">
+<h2>Wait for WSL2 deployment<a class="headerlink" href="#wait-for-wsl2-deployment" title="Permalink to this heading"></a></h2>
+<img alt="_images/10.png" src="_images/10.png" />
+<p>Starting Rancher again shows WSL2 and the docker WSL image are being deployed.</p>
+<p>When the messages in the bottom corner are gone, your rancher installation should be complete.</p>
+</section>
+<section id="pull-required-docker-images">
+<h2>Pull required docker images<a class="headerlink" href="#pull-required-docker-images" title="Permalink to this heading"></a></h2>
+<img alt="_images/11.png" src="_images/11.png" />
+<p>You can verify that docker is up by opening a command prompt and typing <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code>.   It should just return the header row (starting with ‘CONTAINER ID’).  This tells us that the docker CLI tool can talk to the docker server.</p>
+<p>Install the sphinx images.   Firstly, the base image.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker pull sphinxdoc/sphinx</span>
+</pre></div>
+</div>
+</section>
+<section id="install-progress">
+<h2>Install progress<a class="headerlink" href="#install-progress" title="Permalink to this heading"></a></h2>
+<img alt="_images/12.png" src="_images/12.png" />
+<p>Next install the the PDF version.  The PDF version of sphinx is over 2Gb, so the download may take some time.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker pull sphinxdoc/sphinx-latexpdf</span>
+</pre></div>
+</div>
+</section>
+<section id="verify-images-in-rancher-desktop">
+<h2>Verify images in Rancher desktop<a class="headerlink" href="#verify-images-in-rancher-desktop" title="Permalink to this heading"></a></h2>
+<img alt="_images/13.png" src="_images/13.png" />
+<p>Installed images are listed in Rancher.</p>
+<p>In Rancher desktop you can click on the images tab to see installed images.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="03-editing.html" class="btn btn-neutral float-left" title="Editing Sphinx documents" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="05-method-github-actions.html" class="btn btn-neutral float-right" title="Method 3 - Github workflows" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Dan Carroll.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

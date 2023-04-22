@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editing Sphinx documents &mdash; Sphinx Setup 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Method 2 - Rancher" href="04-method-rancher.html" />
+    <link rel="prev" title="Method 1 - Build locally" href="02-method-local.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Sphinx Setup
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-install-vscode.html">Install Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-method-local.html">Method 1 - Build locally</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Editing Sphinx documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-new-working-folder">Create a new working folder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-git-for-this-project">Set up git for this project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-python-for-this-project">Set up python for this project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-sphinx">Install Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#edit-our-first-document">Edit our first document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-html-docs">Build html docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#live-server">Live Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tasks">Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#saving-changes-the-git-way">Saving Changes - the git way</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#saving-to-github">Saving to github</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04-method-rancher.html">Method 2 - Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-method-github-actions.html">Method 3 - Github workflows</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sphinx Setup</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Editing Sphinx documents</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/03-editing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="editing-sphinx-documents">
+<h1>Editing Sphinx documents<a class="headerlink" href="#editing-sphinx-documents" title="Permalink to this heading"></a></h1>
+<p>By this stage you should have the following:</p>
+<ul class="simple">
+<li><p>A working git installation.</p></li>
+<li><p>Visual Studio installed with a few useful plugins.</p></li>
+<li><p>Python3 installed.</p></li>
+</ul>
+<p>So lets build a basic document, single page with a standard table of contents.   And then we’ll build it into html with the locally installed python and sphinx.</p>
+<section id="create-a-new-working-folder">
+<h2>Create a new working folder<a class="headerlink" href="#create-a-new-working-folder" title="Permalink to this heading"></a></h2>
+<p>Working folders are a little like projects.   You can think of the folder as a new project directory for your documentation.</p>
+<p>Open up VS Code.   You should be at the welcome screen.   You can click on the “Open Folder” link, or go via the menu to the <span class="menuselection">File ‣ Open Folder</span> selection.</p>
+<img alt="_images/79-VSCode-NewFolder.png" src="_images/79-VSCode-NewFolder.png" />
+<img alt="_images/80.png" src="_images/80.png" />
+<p>Navigate to a directory where you would like to store your documentation ‘projects’ and click on New Folder.   I have chosen Documents/VS Code/ and created a new folder called <cite>sphinx-demo</cite></p>
+<img alt="_images/81.png" src="_images/81.png" />
+<img alt="_images/82.png" src="_images/82.png" />
+<p>Click on the newly created folder and click “Select Folder”.</p>
+<img alt="_images/83.png" src="_images/83.png" />
+<p>You will be asked to confirm if you trust the authors of this folder.   Since we are going to be the authors, you can click Yes.</p>
+<img alt="_images/84.png" src="_images/84.png" />
+</section>
+<section id="set-up-git-for-this-project">
+<h2>Set up git for this project<a class="headerlink" href="#set-up-git-for-this-project" title="Permalink to this heading"></a></h2>
+<p>Next we need to intialise the repository for git.   Hit <cite>Ctrl + Shift + G</cite> or click on the “Source Control” button on the left hand side.</p>
+<img alt="_images/85.png" src="_images/85.png" />
+<p>Then click on “Initialize Repository” and the git database will be created.    It is in a directory called .git but it is hidden from view.</p>
+<img alt="_images/86.png" src="_images/86.png" />
+<p>Then click on “Explorer” button to get back to the main source navigation window.</p>
+<p>Lets start by creating two files.   These are git files for controlling some of git’s functionality.</p>
+<img alt="_images/88.png" src="_images/88.png" />
+<img alt="_images/89.png" src="_images/89.png" />
+<p>Click on the new file icon in the Explorer and then type the name of the file: <code class="file docutils literal notranslate"><span class="pre">.gitattributes</span></code></p>
+<img alt="_images/90.png" src="_images/90.png" />
+<p>Next, paste the following text into the file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the default behavior, in case people don&#39;t have core.autocrlf set.</span>
+<span class="o">*</span> <span class="n">text</span><span class="o">=</span><span class="n">auto</span>
+
+<span class="c1"># Explicitly declare text files you want to always be normalized and converted</span>
+<span class="c1"># to native line endings on checkout.</span>
+<span class="c1">#*.c text</span>
+
+<span class="c1"># Declare files that will always have CRLF line endings on checkout.</span>
+<span class="c1">#*.sln text eol=crlf</span>
+
+<span class="c1"># Declare files that will always have LF line endings on checkout.</span>
+<span class="o">*.</span><span class="n">sh</span>  <span class="n">text</span> <span class="n">eol</span><span class="o">=</span><span class="n">lf</span>
+
+<span class="c1"># Denote all files that are truly binary and should not be modified.</span>
+<span class="o">*.</span><span class="n">png</span> <span class="n">binary</span>
+<span class="o">*.</span><span class="n">jpg</span> <span class="n">binary</span>
+</pre></div>
+</div>
+<p>This file just makes sure that .sh files are kept as unix LF encoding and .png/.jpg files are always treated as binary.</p>
+<p>Repeat the process for <code class="file docutils literal notranslate"><span class="pre">.gitignore</span></code> which will tell git which files to never consider part of the source code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># VSCode Sphinx Ignore</span>
+
+<span class="c1"># For now lets jsut store the sources.</span>
+<span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">build</span>
+
+<span class="c1"># Put local python envs here.   Only relevant when using local python.</span>
+<span class="o">/.</span><span class="n">env</span><span class="o">*</span>
+</pre></div>
+</div>
+<p><code class="file docutils literal notranslate"><span class="pre">/docs/build</span></code> is the location of our build docs packages and <code class="file docutils literal notranslate"><span class="pre">/.env*</span></code> is the place where we will store our python environments (no need to add these to the source code)</p>
+<img alt="_images/91.png" src="_images/91.png" />
+<p>Notice how there is now a small ‘2’ on the source control icon?   This tells us that there are two files changed since the last ‘commit’.  The fact that the filenames are green also tell us they are new files (yellow would indicate a changed file).   We will commit the changes later.</p>
+<img alt="_images/92.png" src="_images/92.png" />
+</section>
+<section id="set-up-python-for-this-project">
+<h2>Set up python for this project<a class="headerlink" href="#set-up-python-for-this-project" title="Permalink to this heading"></a></h2>
+<p>Next we will create our python environment.    Open a new ‘terminal’ window by selecting <span class="menuselection">Terminal-&gt;New Terminal</span>.  You should now see a powershell window in the bottom right of VSCode.</p>
+<img alt="_images/93.png" src="_images/93.png" />
+<p>Type the following command: <cite>python -m venv .env</cite></p>
+<p>You should notice that the .env folder appears in your explorer.   It should be greyed out since we told git to ignore anthing matching <cite>/.env*</cite>.</p>
+<img alt="_images/94.png" src="_images/94.png" />
+<p>Hopefully you will see the popup asking if you want to make it the default for the workspace folder.    Click ‘Yes’.   Starting a new terminal from now on will execute the command to set the python virtual environment to .env.   This can be seen by a green “(.env)” at the start of the line in the terminal.</p>
+<img alt="_images/95.png" src="_images/95.png" />
+</section>
+<section id="install-sphinx">
+<h2>Install Sphinx<a class="headerlink" href="#install-sphinx" title="Permalink to this heading"></a></h2>
+<p>In a new terminal window, type the following to install Sphinx into our python environment.   To keep things neat and tidy, lets put our document stuff in a subdir called docs.   In the terminal window, execute the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">docs</span>
+<span class="n">cd</span> <span class="n">docs</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span>
+</pre></div>
+</div>
+<img alt="_images/96.png" src="_images/96.png" />
+<p>Pip will install the python package and it’s dependencies directly into your virtual python environment (.env).
+Now we can initialise a new sphinx document.</p>
+<p>You can do that by issuing the command sphinx-quickstart in the same terminal window.</p>
+<p>It will ask you a number of questions.   Here are my suggestions</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Setting</p></th>
+<th class="head"><p>Suggested Value</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Separate source and build directories</p></td>
+<td><p>Yes</p></td>
+<td><p>It makes for a cleaner install.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Project name</p></td>
+<td><p>Sphinx Demo</p></td>
+<td><p>This text will appear in your docs</p></td>
+</tr>
+<tr class="row-even"><td><p>Author Name(s)</p></td>
+<td><p>Your name</p></td>
+<td><p>Can also be team name or dept.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Project releases</p></td>
+<td><p>1</p></td>
+<td><p>Whatever versioning you wish to use</p></td>
+</tr>
+<tr class="row-even"><td><p>Project language</p></td>
+<td><p>en</p></td>
+<td><p>Corporate default</p></td>
+</tr>
+</tbody>
+</table>
+<p>When the quickstart process is finished, it will create some files in the current directory (docs).
+Namely:</p>
+<img alt="_images/97.png" src="_images/97.png" />
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Directory</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>docs/build</p></td>
+<td><p>The directory where our packages will be built.  It should be greyed out since we elected to ignore it in gitignore.</p></td>
+</tr>
+<tr class="row-odd"><td><p>docs/source</p></td>
+<td><p>The directory containing the RST source files and python config file.</p></td>
+</tr>
+<tr class="row-even"><td><p>docs/make.bat and /docs/Makefile</p></td>
+<td><p>These are scripts used for building the packages.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="edit-our-first-document">
+<h2>Edit our first document<a class="headerlink" href="#edit-our-first-document" title="Permalink to this heading"></a></h2>
+<p>In the explorer window, navigate to docs/source/index.rst and click on it to open it in an editor tab.
+As a quick example, lets add some RST text and generate the html pages.</p>
+<p>Just above the “Indices and tables” heading, paste the following text…</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.. note::
+
+    This is note text. If note text runs over a line, make sure the lines wrap
+    and are indented to the same level as the note tag. If formatting is
+    incorrect, part of the note might not render in the HTML output.
+
+    Notes can have more than one paragraph. Successive paragraphs must indent
+    to the same level as the rest of the note.
+
+.. warning::
+
+    Warnings are formatted in the same way as notes. In the same way, lines
+    must be broken and indented under the warning tag.
+
+.. error::
+
+    This is an error!
+
+We can also do math: Since Pythagoras, we know that :math:`a^2 + b^2 = c^2`.
+
+For lists, just place an asterisk at
+the start of a paragraph and indent properly.  The same goes for numbered
+lists; they can also be auto numbered using a ``#`` sign.
+
+* This is a bulleted list.
+* It has two items, the second
+    item uses two lines.
+
+#. This is a numbered list.
+#. It has two items too.
+
+1. This is a different numbered list.
+2. It has two items too.
+
+Nested lists are possible, but be aware that they must be separated from the
+parent list items by blank lines.
+
+* this is
+* a list
+
+    * with a nested list
+    * and some subitems
+
+* and here the parent list continues
+</pre></div>
+</div>
+<p>Save the file and lets build the HTML package.</p>
+</section>
+<section id="build-html-docs">
+<h2>Build html docs<a class="headerlink" href="#build-html-docs" title="Permalink to this heading"></a></h2>
+<p>In the terminal window, type the following commands.   (Make sure you are still in the docs directory)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">make</span> <span class="n">clean</span>
+<span class="o">.</span>\<span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>The first command makes sure the old html files are removed, and then the second command builds it again.  If all went well, you should see under the docs/build directory, a new directory called ‘html’ (and another called doctrees - you can ignore that)</p>
+</section>
+<section id="live-server">
+<h2>Live Server<a class="headerlink" href="#live-server" title="Permalink to this heading"></a></h2>
+<p>If you installed the “Live Preview” plugin, you can start a basic local html server to view your changes whenever you rebuild the documentation in html.   This is really handy for seeing your work progress.</p>
+<img alt="_images/75.png" src="_images/75.png" />
+<p>In the search bar (Ctrl-Shift-P) search for “&gt; Live Preview” and click on “Live Preview: Start Server”.   You might get a windows firewall warning to allow the traffic.</p>
+<a class="reference internal image-reference" href="_images/76.png"><img alt="_images/76.png" src="_images/76.png" style="width: 158.1px; height: 114.3px;" /></a>
+<p>It should open a tab to <a class="reference external" href="http://127.0.0.1:3000/">http://127.0.0.1:3000/</a> but I find it easier opening that in a new web browser.
+It will refresh the page with every change to the code.  If you navigate to <a class="reference external" href="http://127.0.0.1/docs/build/html/">http://127.0.0.1/docs/build/html/</a> you should see your documentation.</p>
+<img alt="_images/99.png" src="_images/99.png" />
+<p>The page looks nice, but there’s a few things we should change.   Firstly, remove the “Indices and tables” section at the bottom.   It does not really do much for us.     Secondly, lets install a nicer html theme (the ‘read the docs’ theme).</p>
+<p>Open the conf.py file in the docs directory.   This file is used to define how sphinx itself is configured.</p>
+<p>Change the html_theme setting from alabaster to “sphinx_rtd_theme”.   And above that line, add another line to import the python module for the RTD theme.   It should look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sphinx_rtd_theme</span>
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;sphinx_rtd_theme&#39;</span>
+</pre></div>
+</div>
+<p>But before we can build that, we have to install the sphinx_rtd_theme module into our python environment.    So in a terminal window, type the following.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx_rtd_theme</span>
+</pre></div>
+</div>
+<p>Now, run the <cite>make clean ; make html</cite> commands again to rebuild the docs.   If you go back to your browser and refresh you should see a big change.</p>
+<img alt="_images/100.png" src="_images/100.png" />
+<p>WOW, that looks a whole lot nicer!</p>
+</section>
+<section id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading"></a></h2>
+<p>Next, to make things a little easier.   Lets make some tasks for building our html pages.</p>
+<p>Hit Ctrl+Shift+P to bring up the VSCode command dialog.   It’s a way for searching for a command when you don’t know how to find it in the menu (or it does not have a key binding).   Type ‘tasks’, choose “Tasks: Configure Task” and select “Create tasks.json from template”.  Choose ‘Others’ as the task template.</p>
+<p>It will open an editor tab with a blank tasks.json file in it.   It looks like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// See https://go.microsoft.com/fwlink/?LinkId=733558</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// for the documentation about the tasks.json format</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;tasks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;echo&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shell&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;echo Hello&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Change that for the following JSON code.    Basically, we’re deleting the ‘echo’ task and adding two more, setting one of them as the default build task.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// See https://go.microsoft.com/fwlink/?LinkId=733558</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// for the documentation about the tasks.json format</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;tasks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;local-build-html&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shell&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;dependsOn&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;clean&quot;</span><span class="p">],</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source ../.env/bin/activate; make html&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}/docs&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;windows&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;..\\.env\\Scripts\\Activate.ps1; .\\make.bat html&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}/docs&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;build&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;isDefault&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;problemMatcher&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clean&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;shell&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source ../.env/bin/activate; make clean&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}/docs&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;windows&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;..\\.env\\Scripts\\Activate.ps1; .\\make.bat clean&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}/docs&quot;</span><span class="w"></span>
+<span class="w">                </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;build&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;isDefault&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;problemMatcher&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In the code above you can see two tasks defined.   ‘local-build-html’ and ‘clean’.    These just do what we were doing manually with the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> and <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> commands.   The only difference is we have to tell VS Code where to work from  (cwd), and we have to set the python environment first (Activate.ps1).   There are also two commands defined in each task, one for windows (<code class="docutils literal notranslate"><span class="pre">..\\.env\\Scripts\\Activate.ps1;</span> <span class="pre">.\\make.bat</span> <span class="pre">&lt;something&gt;</span></code>). This overrides the other command, which is the unix corresponding unix command (<code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">../.env/bin/activate;</span> <span class="pre">make</span> <span class="pre">&lt;something&gt;</span></code>).</p>
+<p>The ‘group’ section of the JSON data just tells VS Code that these are build tasks, and one of them is the default build task.  Finally, in the ‘local-build-html’ task, we have a ‘dependsOn’ setting.    This makes sure that the ‘clean’ task gets executed always before the ‘local-build-html’ task.</p>
+<p>Once you have these saved to tasks.json you should be able to hit Ctrl+Shift+B and the html files will be re-build automatically.</p>
+</section>
+<section id="saving-changes-the-git-way">
+<h2>Saving Changes - the git way<a class="headerlink" href="#saving-changes-the-git-way" title="Permalink to this heading"></a></h2>
+<p>So saving the files happens normally of course but when we have git installed we can also save progressive versions.    Git is a little complicated but I’ll go over the basics.   Your code is stored, not just in the working directory, but also in the git database under the .git directory.  For each change to one or more files you can save extra info.    Firstly, a small commit message (required) to mention what your changes are, but you can also add tags to a git commit so that it’s clear what stage the full package is…    For instance, you might commit the current changes with “My first commit.” and then add a tag that gives the whole package a version number.   Tags are optional so we’ll ignore them for now.</p>
+<p>Click on the ‘Source Control’ button and we will make our first commit.</p>
+<img alt="_images/101.png" src="_images/101.png" />
+<p>In this image you can see there is a text box for the commit message.  And below that the list of changes.    Now, we need to tell git which changes we wish to commit to the git repo.   Clicking on the + on the changes row will let us add them all.</p>
+<img alt="_images/102.png" src="_images/102.png" />
+<p>Now we can see all of our changes are staged under the ‘Staged Changes’ branch and nothing is left in the ‘Changes’ branch.    Enter a commit message and click ‘Commit’.   You should see all the changes disappear and the change counter on the left ‘Source Control’ button disappear as well.</p>
+<p>When you navigate back to the Explorer, you will see in your source tree all of the green files are now white.</p>
+</section>
+<section id="saving-to-github">
+<h2>Saving to github<a class="headerlink" href="#saving-to-github" title="Permalink to this heading"></a></h2>
+<p>So we now have our local repository, but the files are all still on our local machine.    One of the great things about git is that it’s designed to work with remote (shared even) repositories.    So let’s save our git repo to github.   If you don’t already have a github account, go and create one.</p>
+<img alt="_images/103.png" src="_images/103.png" />
+<p>Go back to the ‘Source Control’ section and you should see that the commit button now says “Publish Branch”.    Click on that and you will be asked to ‘allow’ the inbuilt github extension to authnticate to github.   Click ‘Allow’.   It will open a web browser when you log in and complete the authentication, an oauth token will be created and stored in the windows credentials store.</p>
+<img alt="_images/103.png" src="_images/103.png" />
+<p>You should now see two options…   One for creating a public and one for a private repo.   Choose one.  VS Code will now attempt to create the remote repo on github.com.  If it already exisst it will inform you and will not push the code.  Otherwise VS code will link your local repo to the newly created remote and publish (push) the code to the new repo.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You might be asked to authenticate to github again, this time it’s to trust the ‘git credentials manager’ or the ‘git ecosystem’.   This is to allow the git command line tools to also interact with your github account.</p>
+</div>
+<p>What to do if the repo exists, and it is the one you want to use?   Well normally we would have cloned that repo on our local machine instead of creating a repo locally and pushing it to github, so that situation should not really happen.</p>
+<p>In the next section, I describe a way that you can use github infrastructure to build the html and pdf changes, and just save them to a different branch of our same repo.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02-method-local.html" class="btn btn-neutral float-left" title="Method 1 - Build locally" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04-method-rancher.html" class="btn btn-neutral float-right" title="Method 2 - Rancher" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Dan Carroll.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setting up Sphinx and VSCode on Windows. &mdash; Sphinx Setup 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="00-intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Sphinx Setup
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="00-intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-install-vscode.html">Install Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-method-local.html">Method 1 - Build locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-editing.html">Editing Sphinx documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-method-rancher.html">Method 2 - Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-method-github-actions.html">Method 3 - Github workflows</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Sphinx Setup</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Setting up Sphinx and VSCode on Windows.</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setting-up-sphinx-and-vscode-on-windows">
+<h1>Setting up Sphinx and VSCode on Windows.<a class="headerlink" href="#setting-up-sphinx-and-vscode-on-windows" title="Permalink to this heading"></a></h1>
+<p>This document describes how to get Sphinx-Doc running on a windows machine including the required software for editing, version control and building of the document package files.   It also goes into some detail on configuring this software and some basic conventions for RST documents editing.</p>
+<p>We are going to describe two methods for building sphinx projects.  Firstly, the native way, where we will build the sources with python3 under a virtual environment.   Secondly, since building PDFs on Windows this way is difficult, we will also install Rancher-Desktop to build them using docker containers.</p>
+<p>A good, quick overview of Sphinx and how to set it up natively (using the Native python instead of a docker package) can be found at the following youtube <a class="reference external" href="https://www.youtube.com/playlist?list=PLE72UCmIe7T9HewaqCUhKqiMK3LxYStjy">playlist</a>.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="00-intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#prerequisites-and-method">Prerequisites and method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="01-install-vscode.html">Install Visual Studio Code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01-install-vscode.html#download-visual-studio-code">Download Visual Studio Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-install-vscode.html#continue-installation">Continue installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-install-vscode.html#final-confguration-of-visual-studio-code">Final Confguration of Visual Studio Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="01-install-vscode.html#setup-some-key-bindings">Setup some key bindings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-install-vscode.html#install-more-extensions">Install more  extensions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02-method-local.html">Method 1 - Build locally</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-method-local.html#install-git-and-python">Install Git and Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-method-local.html#download-git">Download Git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-method-local.html#continue-installation">Continue Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-method-local.html#setup-git-user">Setup Git user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-method-local.html#download-github-cli">Download Github CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-method-local.html#id1">Continue Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-method-local.html#download-python">Download Python</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03-editing.html">Editing Sphinx documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="03-editing.html#create-a-new-working-folder">Create a new working folder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-editing.html#set-up-git-for-this-project">Set up git for this project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-editing.html#set-up-python-for-this-project">Set up python for this project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-editing.html#install-sphinx">Install Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-editing.html#edit-our-first-document">Edit our first document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-editing.html#build-html-docs">Build html docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-editing.html#live-server">Live Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-editing.html#tasks">Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-editing.html#saving-changes-the-git-way">Saving Changes - the git way</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-editing.html#saving-to-github">Saving to github</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04-method-rancher.html">Method 2 - Rancher</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="04-method-rancher.html#download-and-install-rancher">Download and install Rancher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-method-rancher.html#continue-install">Continue install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-method-rancher.html#don-t-restart-yet">Don’t restart - yet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-method-rancher.html#configure-the-engine">Configure the engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-method-rancher.html#close-and-restart">Close and restart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-method-rancher.html#logging-back-in">Logging back in</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-method-rancher.html#wait-for-wsl2-deployment">Wait for WSL2 deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-method-rancher.html#pull-required-docker-images">Pull required docker images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-method-rancher.html#install-progress">Install progress</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-method-rancher.html#verify-images-in-rancher-desktop">Verify images in Rancher desktop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05-method-github-actions.html">Method 3 - Github workflows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-method-github-actions.html#configure-the-github-workflow">Configure the github workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-method-github-actions.html#create-our-secrets">Create our secrets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-method-github-actions.html#push-and-check-the-progress">Push and check the progress</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="00-intro.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Dan Carroll.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; Sphinx Setup 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Install Visual Studio Code" href="01-install-vscode.html" />
+    <link rel="prev" title="Setting up Sphinx and VSCode on Windows." href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Sphinx Setup
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites-and-method">Prerequisites and method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="01-install-vscode.html">Install Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-method-local.html">Method 1 - Build locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-editing.html">Editing Sphinx documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-method-rancher.html">Method 2 - Rancher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-method-github-actions.html">Method 3 - Github workflows</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sphinx Setup</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/00-intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h1>
+<p>Sphinx is amazingly simple and a versatile documentation helper.   For technical documentation it really does shine, giving the user the ability to write concise documentation quickly, and export it in a few useful formats.  Coupled with the ‘read-the-docs’ theme, the resulting html code is very readable.</p>
+<p>When it comes to exporting to PDF, this is much more easily achieved when running under a Unix OS, rather than windows.   All is not lost however, since Sphinx can also run under docker (which can be very much unix oriented).   So, in this document I will describe a few options on how to achive this.</p>
+<p>At the end of this procedure you should be able to build great documentation and export it to html, pdf and other formats as well.   The 3 ways to do this we will explore are:</p>
+<ul class="simple">
+<li><p>Installing python and git and compiling html docs locally.</p></li>
+<li><p>Installing Rancher-Desktop to enable us to build the docs via docker images (html and pdf)</p></li>
+<li><p>Using github actions to build the html and pdf docs on github hosted runners, deploying to a github pages site.</p></li>
+</ul>
+<p>At the bare minimum we need to install python and git locally as the integration with VSCode makes it easy to author and quickly compile the sources for review.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Rancher-Desktop is opensource software used to administer kubernetes and docker/containerd containers.   Unlike Docker-Desktop it can be used commercially for free.</p>
+</div>
+<section id="prerequisites-and-method">
+<h2>Prerequisites and method<a class="headerlink" href="#prerequisites-and-method" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https:/python.org/">Python</a> - One of the most popular scripting languages around.</p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> - running under python.</p></li>
+<li><p><a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a> - a great IDE for all sorts of things.  (Can also use atom or sublime or notepad - but VS Code is the bomb)</p></li>
+<li><p><a class="reference external" href="https://git-scm.com/">Git</a> - for saving the sources - used by VSCode.</p></li>
+<li><p>A github account.</p></li>
+<li><p><a class="reference external" href="https://rancherdesktop.io/">Rancher and Docker Engine</a> - For running the Sphinx software in a reliable way.</p></li>
+<li><p><a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/about">Windows Subsystem for Linux ver 2</a> - Microsoft finally came to the party.   Needed for Rancher-Desktop.</p></li>
+</ul>
+<p>Editing is best done in an IDE like VSCode.  It provides some formatting context and tips for writing RST documents.  It also integrates the building and saving the sources to a local or remote git repository.   It is possible to author in another IDE but this set of instructions will focus on VSCode.</p>
+<p>To be able to compile the html and pdf files, you need to be able to run the sphinx application.    It’s a python app so you can install python, create a virtual environment, and build things that way.   As mentioned above, I’ve found that for windows, the PDF part is a bit of a problem.  The easiest way to make it work is to run sphinx in a docker container.   We will describe both methods, since building the html images is quite quick under native python.   And we’ll use Rancher-Desktop to build the PDF version under docker.</p>
+<p>The docker engine, with docker desktop is popular.   However, the docker licensing requires payment for Docker Desktop in commercial environments, so as an alternative, these instructions are for using Rancher with the docker engine.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With Rancher and Docker Engine installed, you can also experiment with the millions of available docker images available online.   You can run web servers, Java applications, database servers, MQ systems etc…  There really is a lot available and there’s no concern that you contaminate your own desktop with software that you tested but didn’t like.   Just delete the container and move on…  A good set of documentation for Docker can be found <a class="reference external" href="https://docker-curriculum.com/">here</a>.</p>
+</div>
+<p>For now, though, let just get sphinx running…</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The docker engine runs in a virtual machine under Windows Services for Linux.   WSL2 requires admin privileges so these are needed.  It will be installed and configured as part of the rancher installation.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Setting up Sphinx and VSCode on Windows." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="01-install-vscode.html" class="btn btn-neutral float-right" title="Install Visual Studio Code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Dan Carroll.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
