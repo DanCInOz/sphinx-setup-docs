@@ -7,7 +7,7 @@
             "label": "Build HTML documentation locally",
             "type": "shell",
             "dependsOrder": "sequence",
-            "dependsOn": ["Check env exists", "clean", "local-build-html"],
+            "dependsOn": ["Check env exists", "clean", "local-build-html", "local-build-singlehtml"],
             "group": {
                 "kind": "build",
                 "isDefault": false
@@ -114,12 +114,12 @@
             "label": "local-build-singlehtml",
             "type": "shell",
             "dependsOn": ["local-install-requirements"],
-            "command": "source ./.env/bin/activate; make singlehtml",
+            "command": "source ${workspaceFolder}/.env/bin/activate; make singlehtml",
             "options": {
                 "cwd": "${workspaceFolder}/docs"
             },
             "windows": {
-                "command": ".env\\Scripts\\Activate.ps1; .\\make.bat singlehtml",
+                "command": "${workspaceFolder}\\.env\\Scripts\\Activate.ps1; .\\make.bat singlehtml",
                 "options": {
                     "cwd": "${workspaceFolder}/docs"
                 }

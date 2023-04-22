@@ -16,7 +16,7 @@ release = '0.1'
 
 extensions = [ ]
 
-templates_path = ['_templates']
+#templates_path = ['_templates']
 exclude_patterns = []
 
 
@@ -26,7 +26,7 @@ exclude_patterns = []
 
 import sphinx_rtd_theme
 html_theme = 'sphinx_rtd_theme'
-html_static_path = ['_static']
+#html_static_path = ['_static']
 
 epub_tocdepth = 3
 epub_writing_mode = 'horizontal'
